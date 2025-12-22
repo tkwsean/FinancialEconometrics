@@ -1,0 +1,346 @@
+\documentclass[10pt,a4paper]{article}
+
+% Layout
+\usepackage[margin=0.3cm]{geometry}
+\usepackage{multicol}
+
+\setlength{\columnsep}{0.2cm}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt}
+
+% Remove extra space around equations (set only once)
+\setlength{\abovedisplayskip}{0pt}
+\setlength{\belowdisplayskip}{0pt}
+\setlength{\abovedisplayshortskip}{0pt}
+\setlength{\belowdisplayshortskip}{0pt}
+
+% Math
+\usepackage{amsmath, amssymb}
+
+\begin{document}
+
+\tiny  % maximum density
+
+\begin{multicols}{3}
+
+\section*{Foundational}
+\[
+P(E_1) + P(E_2) + \cdots = P(E_1 \cup E_2 \cup \cdots)
+\]
+\[
+\mathbb{E}[X] = \sum_x x \, \mathbb{P}(X = x)
+\]
+\[
+\mathbb{E}[X] = \int_{-\infty}^{\infty} x f_X(x)\, dx
+\]
+\[
+\mathrm{Var}(X) = \mathbb{E}\!\left[(X - \mathbb{E}[X])^2\right]
+\]
+\[
+\mathrm{Var}(X) = \mathbb{E}[X^2] - \mathbb{E}[X]^2
+\]
+\[
+\mathbb{E}[X] = \sum_x x p(x)
+\]
+\[
+\mathrm{Var}(X) = \mathbb{E}[X^2] - \mathbb{E}[X]^2
+\]
+\[
+\mathbb{E}[aX + b] = a\,\mathbb{E}[X] + b
+\]
+\[
+\mathrm{Var}(aX + b) = a^2 \mathrm{Var}(X)
+\]
+\[
+\mathrm{Var}(X + Y) = \mathrm{Var}(X) + \mathrm{Var}(Y)
+\]
+\[
+\mathrm{Cov}(X,Y) = \rho_{X,Y} \, \sigma_X \, \sigma_Y
+\]
+\section*{Finance}
+\[
+\text{HPR} = \frac{\text{Price at the end of HP} - \text{Purchase Price} + \text{Dividends}}{\text{Purchase Price}}
+\]
+Gross Return:
+\[
+R_{t+1} = \frac{P_{t} - P_{s}}{P_{s}} + 1 = \frac{P_{t}}{P_{s}}
+\]
+Log Return:
+\[
+\log\mathrm{return}_t = \log(R_t + 1) = \log\left( \frac{P_t}{P_s} \right)
+\]
+If $\log\mathrm{return}_t$ is sufficiently small:
+\[
+\log\mathrm{return}_t \approx R_t
+\]
+\[
+\mathbb{E}[r_f] = r_f \qquad \mathrm{Var}(r_f) = 0
+\]
+$\Rightarrow$ $r_f$ is treated as a constant.
+\[
+\text{Risk Premium} = \mathbb{E}[R] - r_f
+\]
+\[
+\text{Excess Returns} = R - r_f
+\]
+\[
+\text{Sharpe Ratio} = \frac{\text{Risk Premium}}{\text{Standard Deviation}} = \frac{\mathbb{E}[R] - r_f}{\mathrm{std}(R)}
+\]
+\section*{Portfolio}
+\[
+U(R) = \mathbb{E}[R] - \frac{1}{2} A \sigma^2 = r_f + \theta \left( \mathbb{E}[R] - r_f \right) - \frac{1}{2} A (\theta^2 \sigma^2)
+\]
+\[
+\theta^* = \frac{\mathbb{E}[R] - r_f}{A \sigma^2}
+\]
+Capital Allocation Line:
+\[
+\mathbb{E}[R_p] = r_f + \text{Sharpe Ratio} \times \sigma_p
+\]
+Two-Asset Portfolio Variance:
+\[
+\sigma_p^2 = w_d^2 \sigma_d^2 + w_e^2 \sigma_e^2 + 2 w_d w_e \sigma_d \sigma_e \rho_{de}
+\]
+Case 1: when $\rho_{de} = 1$
+\[
+\sigma_p = w_d \sigma_d + w_e \sigma_e
+\]
+Case 2: when $\rho_{de} = -1$
+\[
+\sigma_p = |w_d \sigma_d - w_e \sigma_e|
+\]
+when $\sigma_p = 0$:
+\[
+w_d = \frac{\sigma_e}{\sigma_d + \sigma_e}, \qquad w_e = \frac{\sigma_d}{\sigma_d + \sigma_e}
+\]
+Case 3: when $-1 < \rho_{de} < 1$
+\[
+\sigma_p = \sqrt{w_d^2 \sigma_d^2 + w_e^2 \sigma_e^2 + 2 w_d w_e \sigma_d \sigma_e \rho_{de}}
+\]
+when $\sigma_p^2$ is minimized:
+\[
+w_d = \frac{\sigma_e^2 - \mathrm{Cov}(R_d, R_e)}{\sigma_d^2 + \sigma_e^2 - 2 \mathrm{Cov}(R_d, R_e)} \quad \text{and} \quad w_e = 1 - w_d
+\]
+Assuming all assets share similar variance and covariance
+\[
+\sigma_p^2 = \frac{1}{N} \sigma^2 + \frac{N-1}{N} \sigma^2 \rho
+\]
+As \(N \to \infty\):
+\[
+\lim_{N \to \infty} \sigma_p^2 = \sigma^2 \rho
+\]
+\section*{Return Predictability}
+Random Walk 1:
+\[
+r_t = \mu + \varepsilon_t, \quad \varepsilon_t \sim i.i.d. \, (0, \sigma^2)
+\]
+
+\[
+p_t = p_{t-1} + \mu + \varepsilon_t, \quad \varepsilon_t \sim i.i.d. \, (0, \sigma^2)
+\]
+\[
+\mathbb{E}(p_t \mid p_0) = p_0 + \mu t
+\]
+\[
+\mathrm{Var}(p_t \mid p_0) = \sigma^2 t
+\]
+Random Walk 2:
+\[
+\mathbb{E}(r_t \mid \mathcal{F}_{t-1}) = \mu
+\]
+Random Walk 3:
+\[
+\mathbb{E}(r_t) = \mathbb{E}(r_{t+\tau}) = \mu \quad \text{and} \quad \mathrm{Cov}(r_t, r_{t+\tau}) = 0 \quad (\tau > 0)
+\]
+\section*{Volatility}
+Realized variance (RV) and sample variance of log-returns:
+
+\[
+\widehat{\sigma}^2_{\mathrm{RV}} := \sum_{j=1}^{T} (r_t - r_{t-1})^2
+\]
+
+\[
+\sigma^2 := \frac{1}{T-1} \sum_{j=1}^{T} (r_t - \bar{r})^2
+\]
+
+where \( r_t \) is the log-return at time \( t \):
+
+\[
+r_t = \log P_t - \log P_{t-1} = \log \left( \frac{P_t}{P_{t-1}} \right)
+\]
+
+Alternatively, one can use simple (percentage) returns:
+
+\[
+R_t = \frac{P_t - P_{t-1}}{P_{t-1}} \quad \text{(instead of } r_t\text{)}
+\]
+
+Conditional Volatility:
+
+\[
+\operatorname{Var}\left( R_t \;\middle|\; \mathcal{F}_{t-1} \right)
+\]
+
+ARCH model:
+
+\[
+r_t = \sigma_t^2 \epsilon_t^2, \qquad \sigma_t^2 = \beta_0 + \sum_{i=1}^q \beta_i r_{t-i}^2,
+\]
+
+GARCH model:
+
+\[
+r_t^2 = \epsilon_t^2 \left( \beta_0 + \sum_{i=1}^q \beta_i r_{t-i}^2 + \sum_{j=1}^p \gamma_j \sigma_{t-j}^2 \right)
+\]
+
+\section*{Linear Time Series}
+Weak Stationarity: if \[\mathbb{E}(X_t) \text{ and } \mathrm{Var}(X_t) \text{ are fixed for all } t\]
+\[
+\mathrm{Cov}(X_t, X_{t-\tau}) \text{ does not depend on } t
+\]
+
+Strict Stationarity: if the distribution of $(X_1, X_2, \dots, X_n)$ is the same as that of $(X_{1+k}, X_{2+k}, \dots, X_{n+k})$ for all $n$ and $k$
+Strict Stationarity Preservation:
+If $X_t$ strictly stationary and
+\[
+Z_t = f(X_t, X_{t-1}, X_{t-2}, \dots)
+\]
+for continuous $f$, then $Z_t$ strictly stationary.
+Wold's Theorem (Weakly Stationary Process):
+\[
+X_t = \mu + \sum_{j=0}^{\infty} b_j \varepsilon_{t-j}, \quad \sum_{j=0}^{\infty} b_j^2 < \infty
+\]
+$\varepsilon_t$: mean-zero white noise
+
+A time series $\varepsilon_t$ is a white noise with mean $\mu$ and variance $\sigma^2$ if
+\begin{itemize}
+    \item $\mathbb{E}(\varepsilon_t) = \mu$ \quad for all $t$,
+    \item $\mathrm{Var}(\varepsilon_t) = \sigma^2 > 0$ \quad for all $t$,
+    \item $\mathrm{Cov}(\varepsilon_t, \varepsilon_s) = 0$ \quad for all $t \neq s$.
+\end{itemize}
+
+Autocovariance (at lag $\tau$), equal to variance at lag 0:
+\[
+\gamma(\tau) = \mathrm{Cov}(X_t, X_{t-\tau}) = \mathbb{E}\left[(X_t - \mu)(X_{t-\tau} - \mu)\right]
+\]
+Law of Large Numbers for Time Series:
+If $X_t$ stationary and $\sum_{s=-\infty}^{\infty} |\gamma(s)| < \infty$,
+\[
+\bar{X}_T = \frac{1}{T} \sum_{t=1}^T X_t \xrightarrow{p} \mu
+\]
+
+Ergodicity Relaxation:
+\[
+\lim_{T \to \infty} \frac{1}{T} \sum_{s=1}^T |\gamma(s)| = 0
+\]
+(finite second moment)
+Ergodic Theorem. If a time series $X_t$ is stationary and ergodic, then
+\[
+\frac{1}{T} \sum_{t=1}^{T} X_t \xrightarrow{p} \mu
+\]
+where $\mu = \mathbb{E}X_t < \infty$.
+
+Autocorrelation Function (ACF):
+\[
+\rho(\tau) = \mathrm{Corr}(X_t, X_{t+\tau})
+\]
+
+Sample ACF:
+\[
+\hat{\rho}(\tau) = \frac{\hat{\gamma}(\tau)}{\hat{\gamma}(0)}, \quad \hat{\gamma}(\tau) = \frac{1}{T} \sum_{t=1}^{T} (X_{t+\tau} - \bar{X})(X_t - \bar{X})
+\]
+Conditional Expectation Basics:
+\[
+\mathbb{E}(X_t \mid X_{t-1}, X_{t-2}, \dots) = E_{t-1}(X_t)
+\]
+or
+\[
+\mathbb{E}(X_t \mid \mathcal{F}_{t-1}), \quad \mathcal{F}_{t-1} = \sigma(X_{t-1}, X_{t-2}, \dots) \text{ (natural filtration)}
+\]
+
+Adapted Process:
+$X_t$ adapted to $\mathcal{G}_t$ if $\mathbb{E}(X_t \mid \mathcal{G}_t) = X_t$
+
+Martingale Difference Sequnece:
+
+% The MDS condition
+\[E[e_t \mid \mathcal{F}_{t-1}] = 0\]
+
+Unforecastability:
+\[E(X_t \mid \mathcal{F}_{t-1}) = E(X_t)\]
+
+If a time series $X_t$ is stationary and ergodic martingale difference with $E X_t^2 = \sigma^2 < \infty$, then as $T \to \infty$ we have:
+
+\begin{equation}
+    \frac{1}{\sqrt{T}} \sum_{t=1}^{T} X_t \xrightarrow{d} N(0, \sigma^2)
+\end{equation}
+
+\[
+\operatorname{Var}\Bigg(\frac{1}{\sqrt{T}} \sum_{t=1}^{T} X_t \Bigg) 
+= \sum_{u=-(T-1)}^{T-1} \left( 1 - \frac{|u|}{T} \right) \gamma(u).
+\]
+
+\[
+\lim_{T\to\infty} \frac{1}{T} \sum_{u=0}^{T-1} \left(1 - \frac{u}{T}\right) \gamma(u) = \sum_{j=0}^{\infty} \gamma(j)
+\]
+
+\[
+\text{If } X_t \text{ satisfies mixing conditions, we have }
+\sum_{j=0}^{\infty} \gamma(j) \leq C < \infty,
+\]
+in which case
+\[
+S_n = \frac{1}{\sqrt{T}} \sum_{t=1}^{T} X_t \xrightarrow{d} N\left(0, \sum_{j=-\infty}^{\infty} \gamma(j)\right).
+\]
+
+AR Process:
+\[
+X_t = \sum_{j=1}^{p} \phi_j X_{t-j} + \varepsilon_t
+\]
+
+AR(1) Process
+
+\[
+X_t = \phi_1 X_{t-1} + \varepsilon_t, \quad \varepsilon_t \sim \mathrm{WN}(0,\sigma_\varepsilon^2)
+\]
+
+Infinite MA representation (stationary case):
+
+\[
+X_t = \sum_{k=0}^{\infty} \phi_1^k \varepsilon_{t-k}
+\]
+
+Mean: \(\mathbb{E}(X_t) = 0\)
+
+Variance:
+
+\[
+\mathrm{Var}(X_t) = \sigma_\varepsilon^2 \sum_{k=0}^{\infty} \phi_1^{2k}
+\]
+
+Converges iff \(|\phi_1| < 1\):
+
+\[
+\mathrm{Var}(X_t) = \frac{\sigma_\varepsilon^2}{1 - \phi_1^2} \quad \text{for } |\phi_1| < 1
+\]
+
+
+
+\section*{Factor Model and PCA}
+\[
+\mathbf{r}_t = \alpha + \beta \mathbf{f}_t + \varepsilon_t
+\]
+where $\mathbf{r}_t$, $\alpha$ and $\varepsilon_t$ are $k \times 1$, $\beta$ is $k \times m$, and $\mathbf{f}_t$ is $m \times 1$.
+\section*{High Frequency Financial Econometrics}
+Geometric Brownian Motion:
+\[dX_t = \mu X_t dt + \sigma X_t dW_t\]
+
+
+\section*{Derivatives}
+Call Option:
+\[ c = P_0 N(d_1) - K e^{-rT} N(d_2) \]
+\[d_1 = \frac{\ln(P_0 / K) + (r + \frac{1}{2}\sigma^2)T}{\sigma \sqrt{T}}\]
+\[d_2 = d_1 - \sigma \sqrt{T}\]
+\end{multicols}
+
+\end{document}
